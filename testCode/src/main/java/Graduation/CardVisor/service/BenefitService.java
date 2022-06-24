@@ -6,6 +6,7 @@ import Graduation.CardVisor.domain.benefit.BenefitDto;
 import Graduation.CardVisor.domain.serviceone.ServiceOne;
 import Graduation.CardVisor.domain.serviceone.ServiceOneCardsDto;
 import Graduation.CardVisor.domain.serviceone.ServiceOneDto;
+import Graduation.CardVisor.domain.servicetwo.ServiceTwoDto;
 import Graduation.CardVisor.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -72,7 +73,7 @@ public class BenefitService {
     // Spring 에서 Flask 로 Fetch 기능 : Flask 의 알고리즘이 작동되게 신호 보낸 다음, 추천된 카드 리스트를 받아오는 함수
     // 매우매우매우 중요: Flask 에서 추천 된 카드 결과는 ServiceOneCardsDto 라는 객체 형태로 반환된다.
     public ServiceOneCardsDto flaskServiceOne() {
-        var uri = UriComponentsBuilder.fromUriString("http://localhost:5001")
+        var uri = UriComponentsBuilder.fromUriString("http://localhost:5001/serviceOne")
                 .build()
                 .encode()
                 .toUri();
@@ -111,4 +112,24 @@ public class BenefitService {
         return cardService.getFavoriteCount(resultDto.getCards().get(0));
     }
 
+    // ================================= 서비스투
+
+    public ServiceTwoDto flaskServiceTwo() {
+        var uri = UriComponentsBuilder.fromUriString("http://localhost:5001/serviceTwo")
+                .build()
+                .encode()
+                .toUri();
+
+        var headers = new HttpHeaders();
+        var httpEntity = new HttpEntity<>(headers);
+
+        var responseType = new ParameterizedTypeReference<ServiceTwoDto>(){};
+        var responseEntity = new RestTemplate().exchange(
+                uri,
+                HttpMethod.GET,
+                httpEntity,
+                responseType
+        );
+        return responseEntity.getBody();
+    }
 }

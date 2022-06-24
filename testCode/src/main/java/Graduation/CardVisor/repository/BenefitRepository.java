@@ -11,8 +11,4 @@ import java.util.List;
 @Repository
 public interface BenefitRepository extends JpaRepository<Benefit, Long> {
     public List<Benefit> findAllByCardId(Long id);
-
-    public List<Card> findCardByBrand(List<Brand> brandList);
-
-    List<Benefit> findAllByCard(Card card);
 }
