@@ -1,8 +1,12 @@
 import pymysql
 import pandas as pd
+import json
+import random
+import operator
 from flask import Flask, jsonify, request
 from sklearn.metrics.pairwise import cosine_similarity
 from flask_restful import Api, Resource
+from collections import OrderedDict
 
 # example = '''SELECT * FROM cardvisor_beta3.serviceOne;'''
 
@@ -10,7 +14,7 @@ from flask_restful import Api, Resource
 def db_connector(sql):
     db = pymysql.connect(
         host='127.0.0.1',
-        port=3307,
+        port=3306,
         user='root',
         passwd='root',
         db='cardvisor_beta3',
@@ -42,15 +46,15 @@ api = Api(app)
 #     def get(self, word):
 
 #         word = unquote_plus(word)
-#         combined = join_jamos(word)  
+#         combined = join_jamos(word)
 
-#         return {'result' : "%s" % combined} 
+#         return {'result' : "%s" % combined}
 
 
 
 class cards(Resource):
     def get(self):
-        sql = '''SELECT * FROM cardvisor_beta3.serviceOne;'''
+        sql = '''SELECT * FROM cardvisor_beta3.serviceone;'''
         result = db_connector(sql)
         df = pd.DataFrame(result)
 
@@ -99,9 +103,6 @@ class cards(Resource):
         for col in trash:
             members_choice = members_choice.drop(columns=[col])
 
-        members_choice = members_choice.loc[:, members_choice.columns != 'member_id'].astype('bool')
-        members_choice = members_choice.loc[:, members_choice.columns != 'member_id'].astype('int')
-
         # 결과 확인
         print(members_choice)
 
@@ -112,11 +113,11 @@ class cards(Resource):
 
         # 'brand_id' 칼럼 제거
         df = df.drop(columns=['brand_id'])
-        
+
         # 'member_id' 칼럼의 값이 전부 1 이므로 해당 칼럼의 value에 맞춰 통일 => 이때 각 'brand_id' 칼럼값들은 sum()
         # 하지만 이때 'card_code'와 'brand' 값이 완전히 중복되는 row들이 있으므로 혜택이 없으면 0이지만 있으면 무조건 1이 아님
         df = df.groupby(['card_code'], as_index=False).sum()
-        
+
         # int -> bool -> int datatype 변환을 거쳐 숫자가 존재하면 전부 1로 교체
         temp = df.loc[:, df.columns != 'card_code'].astype('bool')
         temp = temp.loc[:, temp.columns != 'card_code'].astype('int')
@@ -125,7 +126,7 @@ class cards(Resource):
         # 유사도 계산에 활용될 'card_code', 와 각 브랜드 아이디값 칼럼 dataframe 출력
         print(df)
         recommendable_cards = df.copy()
-        
+
 
         # 코사인 유사도 계산
         final = pd.DataFrame(cosine_similarity(
@@ -143,7 +144,7 @@ class cards(Resource):
 
 
         final = final.sort_values(by=['similarity'], ascending=False)
-        final = final.head(20)
+        final = final.head(10)
 
         # 유사도 높은 상위 10개 항목 출력
         print(final)
@@ -155,16 +156,64 @@ class cards(Resource):
 
         cardList = { "cards" : final_cards }
 
-        
+
         # 해당 리스트를 브라우저 화면에 출력
         print(cardList)
 
-        sql = '''truncate table cardvisor_beta3.serviceOne;'''
+        sql = '''truncate table cardvisor_beta3.serviceone;'''
         result = db_connector(sql)
 
         return jsonify(cardList)
 
-api.add_resource(cards, "/")
+class consumptionList(Resource):
+    def get(self):
+        file = open("brands_dictionary.txt", "r")
+        pre_brands = file.readlines()
+        file.close()
+
+        brands = []
+
+        for i in pre_brands:
+            temp = i.split(",")
+            brands.append(temp[1].replace("\n", ""))
+
+        data = OrderedDict()
+        res_list = OrderedDict()
+
+        data["bank_name"] = "우리은행"
+
+        temp = []
+
+        for i in range(0, 100) :
+            temp_year = str(2022)
+            temp_month = str(random.randrange(1, 13)).zfill(2)
+            temp_day = str(random.randrange(1, 32)).zfill(2)
+
+            temp_hour = str(random.randrange(0, 25)).zfill(2)
+            temp_min = str(random.randrange(0, 61)).zfill(2)
+            temp_sec =  str(random.randrange(0, 61)).zfill(2)
+
+            temp.append({
+                "tran_date": str(temp_year) + str(temp_month) + str(temp_day),
+                "tran_time": str(temp_hour) + str(temp_min) + str(temp_sec),
+                "printed_content": brands[random.randrange(0, len(brands))],
+                "tran_amt": str(random.randrange(0, 20000) * 10),
+            })
+
+        sorted_temp = sorted(temp, key=operator.itemgetter("tran_date"))
+
+        data["res_list"] = sorted_temp
+
+        # with open("transaction.json", "w", encoding="utf-8") as make_file :
+        #     json.dump(data, make_file, ensure_ascii=False, indent="\t")
+        print(data)
+
+        return data
+
+
+
+api.add_resource(cards, "/serviceOne")
+api.add_resource(consumptionList,"/serviceTwo")
 
 
 if __name__ == "__main__":
