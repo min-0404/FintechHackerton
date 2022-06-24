@@ -14,7 +14,7 @@ from collections import OrderedDict
 def db_connector(sql):
     db = pymysql.connect(
         host='127.0.0.1',
-        port=3306,
+        port=3307,
         user='root',
         passwd='root',
         db='cardvisor_beta3',
@@ -167,7 +167,7 @@ class cards(Resource):
 
 class consumptionList(Resource):
     def get(self):
-        file = open("brands_dictionary.txt", "r")
+        file = open("brands_dictionary.txt", "r", encoding="UTF-8")
         pre_brands = file.readlines()
         file.close()
 
