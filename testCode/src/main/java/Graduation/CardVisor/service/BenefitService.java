@@ -7,6 +7,7 @@ import Graduation.CardVisor.domain.serviceone.ServiceOne;
 import Graduation.CardVisor.domain.serviceone.ServiceOneCardsDto;
 import Graduation.CardVisor.domain.serviceone.ServiceOneDto;
 import Graduation.CardVisor.domain.servicetwo.ServiceTwo;
+import Graduation.CardVisor.domain.servicetwo.ServiceTwoCardsDto;
 import Graduation.CardVisor.domain.servicetwo.ServiceTwoDto;
 import Graduation.CardVisor.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -115,8 +116,8 @@ public class BenefitService {
 
     // ================================= 서비스투
 
-    public ServiceTwoDto flaskServiceTwo() {
-        var uri = UriComponentsBuilder.fromUriString("http://localhost:5001/serviceTwo")
+    public ServiceTwoDto flaskServiceTwoSave() {
+        var uri = UriComponentsBuilder.fromUriString("http://localhost:5001/serviceTwo/save")
                 .build()
                 .encode()
                 .toUri();
@@ -134,9 +135,28 @@ public class BenefitService {
         return responseEntity.getBody();
     }
 
+    public ServiceTwoCardsDto flaskServiceTwoRecommend() {
+        var uri = UriComponentsBuilder.fromUriString("http://localhost:5001/serviceTwo/recommend")
+                .build()
+                .encode()
+                .toUri();
+
+        var headers = new HttpHeaders();
+        var httpEntity = new HttpEntity<>(headers);
+
+        var responseType = new ParameterizedTypeReference<ServiceTwoCardsDto>(){};
+        var responseEntity = new RestTemplate().exchange(
+                uri,
+                HttpMethod.GET,
+                httpEntity,
+                responseType
+        );
+        return responseEntity.getBody();
+    }
+
     public ServiceTwoDto DtoToServiceTwo(){
 
-        ServiceTwoDto serviceTwoDto = flaskServiceTwo();
+        ServiceTwoDto serviceTwoDto = flaskServiceTwoSave();
 
         for(ServiceTwoDto.Res res : serviceTwoDto.getRes_list()){
             ServiceTwo serviceTwo =  new ServiceTwo();

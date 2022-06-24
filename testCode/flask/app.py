@@ -14,7 +14,7 @@ from collections import OrderedDict
 def db_connector(sql):
     db = pymysql.connect(
         host='127.0.0.1',
-        port=3306,
+        port=3307,
         user='root',
         passwd='root',
         db='cardvisor_beta3',
@@ -52,7 +52,7 @@ api = Api(app)
 
 
 
-class cards(Resource):
+class serviceOne(Resource):
     def get(self):
         sql = '''SELECT * FROM cardvisor_beta3.serviceone;'''
         result = db_connector(sql)
@@ -132,9 +132,9 @@ class cards(Resource):
         final = pd.DataFrame(cosine_similarity(
             members_choice.loc[:, members_choice.columns != 'member_id'],
             recommendable_cards.loc[:, recommendable_cards.columns != 'card_code']
-            ),
+        ),
             columns = list(recommendable_cards.card_code), index = ['similarity']
-            )
+        )
 
         #칼럼이 데이터를 더 가공하기 쉬우므로 transpose
         final = final.transpose()
@@ -165,7 +165,7 @@ class cards(Resource):
 
         return jsonify(cardList)
 
-class consumptionList(Resource):
+class serviceTwoSave(Resource):
     def get(self):
         file = open("brands_dictionary.txt", "r", encoding="UTF-8")
         pre_brands = file.readlines()
@@ -197,7 +197,7 @@ class consumptionList(Resource):
                 "tran_date": str(temp_year) + str(temp_month) + str(temp_day),
                 "tran_time": str(temp_hour) + str(temp_min) + str(temp_sec),
                 "printed_content": brands[random.randrange(0, len(brands))],
-                "tran_amt": random.randrange(0, 20000) * 10,
+                "tran_amt": str(random.randrange(0, 20000) * 10),
             })
 
         sorted_temp = sorted(temp, key=operator.itemgetter("tran_date"))
@@ -206,14 +206,130 @@ class consumptionList(Resource):
 
         # with open("transaction.json", "w", encoding="utf-8") as make_file :
         #     json.dump(data, make_file, ensure_ascii=False, indent="\t")
-        print(data)
+        # print(data)
 
         return data
 
 
+class serviceTwoRecommend(Resource):
+    def get(self):
+        sql = '''
+            SELECT * FROM cardvisor_beta3.servicetwo;
+            '''
+        result = db_connector(sql)
+        df = pd.DataFrame(result)
+        brands = df["brand_id"]
 
-api.add_resource(cards, "/serviceOne")
-api.add_resource(consumptionList,"/serviceTwo")
+        categories = []
+
+        for brand in brands:
+            sql = "select category_id from brand where brand_id = {}".format(brand)
+            result = db_connector(sql)
+            categories.append(result[0].get('category_id'))
+
+        df['category_id'] = categories
+
+        member_table = df.copy()
+
+        member_table = member_table.drop(columns = ['brand_id'])
+        member_table = member_table.drop(columns = ['servicetwo_id'])
+
+        category_dummies = pd.get_dummies(member_table.category_id)
+        member_table = pd.concat([member_table, category_dummies], axis = 'columns')
+
+        member_table = member_table.groupby(['category_id', 'member_id'], as_index=False).sum()
+
+        member_table = member_table.drop(columns = ['category_id'])
+
+        consumption = member_table.loc[:, (member_table.columns != 'member_id') & (member_table.columns != 'cost')].astype('bool')
+        consumption = consumption.loc[:, (consumption.columns != 'member_id') & (consumption.columns != 'cost')].astype('int')
+
+        consumption_total = pd.concat([member_table['member_id'], consumption], axis='columns')
+
+        total_consumption = member_table['cost'].sum()
+
+        consumption_total = consumption_total.groupby(['member_id'], as_index=False).sum()
+
+        memberId = consumption_total['member_id']
+        consumption_total = consumption_total.drop(columns = ['member_id'])
+        consumption_total_index = consumption_total.transpose().index.values
+
+        cost_list = member_table['cost']
+        cost_list = cost_list.set_axis(consumption_total_index, axis='index')
+        cost_list = cost_list.mul(1/total_consumption)
+
+        multiplicationResults = consumption_total.mul(cost_list);
+
+        final_member_table = pd.concat([memberId, multiplicationResults], axis='columns')
+
+
+        sql = f"""
+            SELECT card_code, category_id FROM cardvisor_beta3.benefit
+            WHERE brand_id in {tuple(brands)}
+            """
+        options = db_connector(sql)
+        df = pd.DataFrame(options)
+
+        categories2 = df.category_id
+
+        trash = non_match_elements(list(set(categories)), list(categories2))
+
+        # 추출된 'brand_id' 값 칼럼을 members_choice에서 제거
+        for col in trash:
+            final_member_table = final_member_table.drop(columns=[col])
+
+        category_dummies = pd.get_dummies(df.category_id)
+        card_table = pd.concat([df, category_dummies], axis = 'columns')
+
+        card_table = card_table.drop(columns = ['category_id'])
+
+        card_table = card_table.groupby(['card_code'], as_index=False).sum()
+
+        card_table_temp = card_table.drop(columns = ['card_code'])
+        card_table_temp = card_table_temp.transpose()
+
+        weight_list = []
+        for i in range(len(card_table.index.values)):
+            weight_list.append(card_table_temp[i].sum())
+
+        for i in range(len(card_table.index.values)):
+            card_table_temp[i] = card_table_temp[i].mul(1/weight_list[i])
+
+        card_table_temp2 = card_table_temp.transpose()
+
+        card_table = pd.concat([card_table['card_code'], card_table_temp2], axis='columns')
+
+        final = pd.DataFrame(cosine_similarity(
+            final_member_table.loc[:, final_member_table.columns != 'member_id'],
+            card_table.loc[:, card_table.columns != 'card_code']
+        ),
+            columns = list(card_table.card_code), index = ['similarity']
+        )
+
+        final = final.transpose()
+        final = final.sort_values(by=['similarity'], ascending=False)
+        final = final.head(10)
+
+        final_cards = list(final.index.values)
+        final_cards = list([int(x) for x in final_cards])
+        print(final_cards)
+
+        cardList = { "cards" : final_cards }
+
+
+        # 해당 리스트를 브라우저 화면에 출력
+        print(cardList)
+
+        sql = '''truncate table cardvisor_beta3.servicetwo;'''
+        result = db_connector(sql)
+
+        return jsonify(cardList)
+
+
+
+api.add_resource(serviceOne, "/serviceOne")
+api.add_resource(serviceTwoSave,"/serviceTwo/save")
+api.add_resource(serviceTwoRecommend, "/serviceTwo/recommend")
 
 
 if __name__ == "__main__":

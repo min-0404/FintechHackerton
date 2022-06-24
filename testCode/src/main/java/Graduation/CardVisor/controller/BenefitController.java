@@ -2,6 +2,7 @@ package Graduation.CardVisor.controller;
 
 
 import Graduation.CardVisor.domain.serviceone.ServiceOneDto;
+import Graduation.CardVisor.domain.servicetwo.ServiceTwoCardsDto;
 import Graduation.CardVisor.domain.servicetwo.ServiceTwoDto;
 import Graduation.CardVisor.service.BenefitService;
 import Graduation.CardVisor.service.CardService;
@@ -51,9 +52,14 @@ public class BenefitController {
         // results 에는 추천된 카드들이 담겨있다. => 이 카드들의 데이터 뽑아서 정리해서 프론트로 보내주는 것부터 시작하면 된단다. (그냥 showAllCards 처럼 하면 됨)
     }
 
-    @GetMapping("/serviceTwo")
-    public ServiceTwoDto blah() {
+    @GetMapping("/serviceTwo/save")
+    public ServiceTwoDto serviceTwoSave() {
 
         return benefitService.DtoToServiceTwo();
+    }
+
+    @GetMapping("/serviceTwo/recommend")
+    public ServiceTwoCardsDto serviceTwoRecommend() {
+        return benefitService.flaskServiceTwoRecommend();
     }
 }
