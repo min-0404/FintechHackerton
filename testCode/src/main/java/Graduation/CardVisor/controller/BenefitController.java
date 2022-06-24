@@ -53,6 +53,7 @@ public class BenefitController {
 
     @GetMapping("/serviceTwo")
     public ServiceTwoDto blah() {
-        return benefitService.flaskServiceTwo();
+
+        return benefitService.DtoToServiceTwo();
     }
 }

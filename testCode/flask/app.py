@@ -14,7 +14,7 @@ from collections import OrderedDict
 def db_connector(sql):
     db = pymysql.connect(
         host='127.0.0.1',
-        port=3307,
+        port=3306,
         user='root',
         passwd='root',
         db='cardvisor_beta3',
@@ -197,7 +197,7 @@ class consumptionList(Resource):
                 "tran_date": str(temp_year) + str(temp_month) + str(temp_day),
                 "tran_time": str(temp_hour) + str(temp_min) + str(temp_sec),
                 "printed_content": brands[random.randrange(0, len(brands))],
-                "tran_amt": str(random.randrange(0, 20000) * 10),
+                "tran_amt": random.randrange(0, 20000) * 10,
             })
 
         sorted_temp = sorted(temp, key=operator.itemgetter("tran_date"))

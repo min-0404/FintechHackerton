@@ -6,6 +6,7 @@ import Graduation.CardVisor.domain.benefit.BenefitDto;
 import Graduation.CardVisor.domain.serviceone.ServiceOne;
 import Graduation.CardVisor.domain.serviceone.ServiceOneCardsDto;
 import Graduation.CardVisor.domain.serviceone.ServiceOneDto;
+import Graduation.CardVisor.domain.servicetwo.ServiceTwo;
 import Graduation.CardVisor.domain.servicetwo.ServiceTwoDto;
 import Graduation.CardVisor.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -131,5 +132,21 @@ public class BenefitService {
                 responseType
         );
         return responseEntity.getBody();
+    }
+
+    public ServiceTwoDto DtoToServiceTwo(){
+
+        ServiceTwoDto serviceTwoDto = flaskServiceTwo();
+
+        for(ServiceTwoDto.Res res : serviceTwoDto.getRes_list()){
+            ServiceTwo serviceTwo =  new ServiceTwo();
+
+            serviceTwo.setBrand(brandRepository.getByNameKorean(res.getPrinted_content()));
+            serviceTwo.setMember(memberRepository.getById(1L));
+            serviceTwo.setCost(res.getTran_amt());
+            serviceTwoRepository.save(serviceTwo);
+        }
+
+        return serviceTwoDto;
     }
 }

@@ -22,7 +22,7 @@ public class ServiceTwoDto {
         private String tran_date;
         private String tran_time;
         private String printed_content;
-        private String tran_amt;
+        private Integer tran_amt;
     }
 
 //    "tran_date": "20220104",
