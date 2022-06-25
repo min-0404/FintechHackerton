@@ -1,6 +1,9 @@
 package Graduation.CardVisor.controller;
 
 
+import Graduation.CardVisor.domain.kakao.SearchLocalRes;
+import Graduation.CardVisor.domain.serviceThree.ServiceThreeDto;
+import Graduation.CardVisor.domain.serviceThree.ServiceThreeLocations;
 import Graduation.CardVisor.domain.serviceone.ServiceOneDto;
 import Graduation.CardVisor.domain.servicetwo.ServiceTwoCardsDto;
 import Graduation.CardVisor.domain.servicetwo.ServiceTwoDto;
@@ -79,6 +82,22 @@ public class BenefitController {
 
         return store;
 
+    }
+
+    @GetMapping("/kakaoSearch")
+    public SearchLocalRes searchLocal() {
+        return benefitService.kakaoSearchLocal("올리브영 홍대정문점");
+    }
+
+
+    @GetMapping("/serviceThree/save")
+    public ServiceThreeDto serviceThreeSave() {
+        return benefitService.DtoToServiceThree();
+    }
+
+    @GetMapping("/serviceThree/map")
+    public ServiceThreeLocations serviceThreeMap() {
+        return benefitService.serviceThreeToMap();
     }
 
 }

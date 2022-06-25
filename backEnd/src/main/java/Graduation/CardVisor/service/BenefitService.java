@@ -4,6 +4,10 @@ package Graduation.CardVisor.service;
 import Graduation.CardVisor.domain.Card;
 import Graduation.CardVisor.domain.benefit.Benefit;
 import Graduation.CardVisor.domain.benefit.BenefitDto;
+import Graduation.CardVisor.domain.kakao.SearchLocalRes;
+import Graduation.CardVisor.domain.serviceThree.ServiceThree;
+import Graduation.CardVisor.domain.serviceThree.ServiceThreeDto;
+import Graduation.CardVisor.domain.serviceThree.ServiceThreeLocations;
 import Graduation.CardVisor.domain.serviceone.ServiceOne;
 import Graduation.CardVisor.domain.serviceone.ServiceOneCardsDto;
 import Graduation.CardVisor.domain.serviceone.ServiceOneDto;
@@ -17,6 +21,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -37,6 +42,7 @@ public class BenefitService {
     private final ReviewRepository reviewRepository;
     private final ServiceOneRepository serviceOneRepository;
     private final ServiceTwoRepository serviceTwoRepository;
+    private final ServiceThreeRepository serviceThreeRepository;
     private final BenefitRepository benefitRepository;
 
 
@@ -193,6 +199,96 @@ public class BenefitService {
     }
 
 
+    // ================================= 서비스쓰리
 
 
+    public SearchLocalRes kakaoSearchLocal(String query) {
+        var uri = UriComponentsBuilder.fromUriString("https://dapi.kakao.com/v2/local/search/keyword.json?query=" + query)
+                .build()
+                .encode()
+                .toUri();
+
+        var headers = new HttpHeaders();
+        headers.set("Authorization", "KakaoAK 0c332c242e8c1db687c8a561e21704ef");
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        var httpEntity = new HttpEntity<>(headers);
+
+        var responseType = new ParameterizedTypeReference<SearchLocalRes>(){};
+        var responseEntity = new RestTemplate().exchange(
+                uri,
+                HttpMethod.GET,
+                httpEntity,
+                responseType
+        );
+        return responseEntity.getBody();
+    }
+
+    public ServiceThreeDto flaskServiceThreeSave() {
+        var uri = UriComponentsBuilder.fromUriString("http://localhost:5001/serviceThree/save")
+                .build()
+                .encode()
+                .toUri();
+
+        var headers = new HttpHeaders();
+        var httpEntity = new HttpEntity<>(headers);
+
+        var responseType = new ParameterizedTypeReference<ServiceThreeDto>(){};
+        var responseEntity = new RestTemplate().exchange(
+                uri,
+                HttpMethod.GET,
+                httpEntity,
+                responseType
+        );
+        return responseEntity.getBody();
+    }
+
+    public ServiceThreeDto DtoToServiceThree(){
+
+        ServiceThreeDto serviceThreeDto = flaskServiceThreeSave();
+
+        for(ServiceThreeDto.Res res : serviceThreeDto.getRes_list()){
+            ServiceThree serviceThree =  new ServiceThree();
+
+            serviceThree.setBrand(brandRepository.getByNameKorean(res.getPrinted_content()));
+            serviceThree.setMember(memberRepository.getById(1L));
+            serviceThree.setCost(res.getTran_amt());
+            serviceThree.setDate(res.getTran_date());
+            serviceThree.setTime(res.getTran_time());
+
+            SearchLocalRes searchLocalRes = kakaoSearchLocal(res.getDetailed());
+
+            serviceThree.setX(Float.parseFloat(searchLocalRes.getDocuments().get(0).getX()));
+            serviceThree.setY(Float.parseFloat(searchLocalRes.getDocuments().get(0).getY()));
+
+
+            serviceThreeRepository.save(serviceThree);
+        }
+
+        return serviceThreeDto;
+    }
+
+    public ServiceThreeLocations serviceThreeToMap() {
+
+        List<ServiceThree> serviceThreeList = serviceThreeRepository.findAll();
+
+        ServiceThreeLocations serviceThreeLocations = new ServiceThreeLocations();
+
+        List<ServiceThreeLocations.ServiceThreeLocation> locationList = new ArrayList<>();
+
+        for (ServiceThree serviceThree : serviceThreeList) {
+            ServiceThreeLocations.ServiceThreeLocation serviceThreeLocation = new ServiceThreeLocations.ServiceThreeLocation();
+            serviceThreeLocation.setBrandName(serviceThree.getBrand().getNameEngish());
+            serviceThreeLocation.setMapx(serviceThree.getX());
+            serviceThreeLocation.setMapy(serviceThree.getY());
+            serviceThreeLocation.setCost(serviceThree.getCost());
+            serviceThreeLocation.setDate(serviceThree.getDate());
+            serviceThreeLocation.setTime(serviceThree.getTime());
+
+            locationList.add(serviceThreeLocation);
+        }
+
+        serviceThreeLocations.setLocationList(locationList);
+
+        return serviceThreeLocations;
+    }
 }

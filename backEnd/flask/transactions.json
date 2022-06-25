@@ -1,0 +1,145 @@
+{
+  "bank_name": "우리은행",
+  "res_list": [
+    {
+      "tran_date": "20220111",
+      "tran_time": "031442",
+      "printed_content": "공차",
+      "detailed" : "공차 홍대입구역점",
+      "tran_amt": 4500
+    },
+    {
+      "tran_date": "20220111",
+      "tran_time": "241719",
+      "printed_content": "올리브영",
+      "detailed" : "올리브영 홍대정문점",
+      "tran_amt": 7800
+    },
+    {
+      "tran_date": "20220118",
+      "tran_time": "020306",
+      "printed_content": "투썸플레이스",
+      "detailed": "투썸플레이스 홍대입구역점",
+      "tran_amt": 4500
+    },
+    {
+      "tran_date": "20220122",
+      "tran_time": "021927",
+      "printed_content": "알라딘",
+      "detailed": "알라딘중고서점 합정점",
+      "tran_amt": 32000
+    },
+    {
+      "tran_date": "20220122",
+      "tran_time": "045526",
+      "printed_content": "던킨도너츠",
+      "detailed": "던킨도너츠 홍대역점",
+      "tran_amt": 8200
+    },
+    {
+      "tran_date": "20220123",
+      "tran_time": "051047",
+      "printed_content": "세븐일레븐",
+      "detailed": "세븐일레븐 홍익대2호점",
+      "tran_amt": 2200
+    },
+    {
+      "tran_date": "20220227",
+      "tran_time": "051047",
+      "printed_content": "세븐일레븐",
+      "detailed": "세븐일레븐 홍익대2호점",
+      "tran_amt": 3500
+    },
+    {
+      "tran_date": "20220211",
+      "tran_time": "003800",
+      "printed_content": "이마트24",
+      "detailed": "이마트24 홍대서교점",
+      "tran_amt": 8300
+    },
+    {
+      "tran_date": "20220220",
+      "tran_time": "024036",
+      "printed_content": "버거킹",
+      "detailed": "버거킹 서교동사거리점",
+      "tran_amt": 13000
+    },
+    {
+      "tran_date": "20220222",
+      "tran_time": "180524",
+      "printed_content": "써브웨이",
+      "detailed": "써브웨이 홍대아트점",
+      "tran_amt": 9500
+    },
+    {
+      "tran_date": "20220224",
+      "tran_time": "175536",
+      "printed_content": "도미노 피자",
+      "detailed": "도미노피자 연희점",
+      "tran_amt": 14500
+    },
+    {
+      "tran_date": "20220224",
+      "tran_time": "124246",
+      "printed_content": "CGV",
+      "detailed": "CGV 홍대",
+      "tran_amt": 34000
+    },
+    {
+      "tran_date": "20220226",
+      "tran_time": "005817",
+      "printed_content": "뚜레쥬르",
+      "detailed": "뚜레쥬르 수원정자점",
+      "tran_amt": 12000
+    },
+    {
+      "tran_date": "20220227",
+      "tran_time": "095242",
+      "printed_content": "투썸플레이스",
+      "detailed": "투썸플레이스 북수원정자타운점",
+      "tran_amt": 4500
+    },
+    {
+      "tran_date": "20220227",
+      "tran_time": "215230",
+      "printed_content": "GS25",
+      "detailed": "GS25 화서역파크점",
+      "tran_amt": 8300
+    },
+    {
+      "tran_date": "20220229",
+      "tran_time": "223252",
+      "printed_content": "CU",
+      "detailed": "CU 화서문점",
+      "tran_amt": 4000
+    },
+    {
+      "tran_date": "20220305",
+      "tran_time": "203945",
+      "printed_content": "롯데백화점",
+      "detailed": "롯데백화점 수원점",
+      "tran_amt": 84000
+    },
+    {
+      "tran_date": "20220309",
+      "tran_time": "181708",
+      "printed_content": "맥도날드",
+      "detailed": "맥도날드 수원정자DT점",
+      "tran_amt": 7300
+    },
+    {
+      "tran_date": "20220312",
+      "tran_time": "090541",
+      "printed_content": "GS칼텍스 휘발유",
+      "detailed": "화서제일주유소",
+      "tran_amt": 50000
+    },
+    {
+      "tran_date": "20220312",
+      "tran_time": "090541",
+      "printed_content": "GS마트",
+      "detailed": "GS더프레시 수원화서점",
+      "tran_amt": 17300
+    }
+  ]
+}

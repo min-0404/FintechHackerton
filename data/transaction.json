@@ -2,604 +2,144 @@
 	"bank_name": "우리은행",
 	"res_list": [
 		{
-			"tran_date": "20220104",
-			"tran_time": "075344",
-			"printed_content": "삼성페이",
-			"tran_amt": "14490"
-		},
-		{
-			"tran_date": "20220109",
-			"tran_time": "092813",
-			"printed_content": "왓챠",
-			"tran_amt": "190960"
-		},
-		{
-			"tran_date": "20220111",
-			"tran_time": "183538",
-			"printed_content": "인터파크",
-			"tran_amt": "99540"
-		},
-		{
 			"tran_date": "20220111",
 			"tran_time": "031442",
-			"printed_content": "현대백화점 U-PLEX",
-			"tran_amt": "181240"
+			"printed_content": "공차",
+			"detailed" : "공차 홍대입구역점",
+			"tran_amt": 4500
 		},
 		{
 			"tran_date": "20220111",
 			"tran_time": "241719",
-			"printed_content": "신세계백화점",
-			"tran_amt": "161770"
-		},
-		{
-			"tran_date": "20220115",
-			"tran_time": "212523",
-			"printed_content": "S-Oil 휘발유",
-			"tran_amt": "33170"
+			"printed_content": "올리브영",
+			"detailed" : "올리브영 홍대정문점",
+			"tran_amt": 7800
 		},
 		{
 			"tran_date": "20220118",
 			"tran_time": "020306",
-			"printed_content": "T.G.I.F",
-			"tran_amt": "141720"
+			"printed_content": "투썸플레이스",
+			"detailed": "투썸플레이스 홍대입구역점",
+			"tran_amt": 4500
 		},
 		{
 			"tran_date": "20220122",
 			"tran_time": "021927",
-			"printed_content": "스무디킹",
-			"tran_amt": "29720"
+			"printed_content": "알라딘",
+			"detailed": "알라딘중고서점 합정점",
+			"tran_amt": 32000
 		},
 		{
 			"tran_date": "20220122",
 			"tran_time": "045526",
-			"printed_content": "롯데영플라자",
-			"tran_amt": "93010"
+			"printed_content": "던킨도너츠",
+			"detailed": "던킨도너츠 홍대역점",
+			"tran_amt": 8200
 		},
 		{
 			"tran_date": "20220123",
 			"tran_time": "051047",
-			"printed_content": "파스쿠찌",
-			"tran_amt": "139360"
+			"printed_content": "세븐일레븐",
+			"detailed": "세븐일레븐 홍익대2호점",
+			"tran_amt": 2200
 		},
 		{
-			"tran_date": "20220203",
-			"tran_time": "070113",
-			"printed_content": "파리바게뜨",
-			"tran_amt": "64880"
+			"tran_date": "20220227",
+			"tran_time": "051047",
+			"printed_content": "세븐일레븐",
+			"detailed": "세븐일레븐 홍익대2호점",
+			"tran_amt": 3500
 		},
 		{
 			"tran_date": "20220211",
 			"tran_time": "003800",
-			"printed_content": "롯데슈퍼",
-			"tran_amt": "32960"
+			"printed_content": "이마트24",
+			"detailed": "이마트24 홍대서교점",
+			"tran_amt": 8300
 		},
 		{
 			"tran_date": "20220220",
 			"tran_time": "024036",
-			"printed_content": "롯데영플라자",
-			"tran_amt": "16400"
+			"printed_content": "버거킹",
+			"detailed": "버거킹 서교동사거리점",
+			"tran_amt": 13000
 		},
 		{
 			"tran_date": "20220222",
 			"tran_time": "180524",
-			"printed_content": "엔제리너스",
-			"tran_amt": "113770"
+			"printed_content": "써브웨이",
+			"detailed": "써브웨이 홍대아트점",
+			"tran_amt": 9500
 		},
 		{
 			"tran_date": "20220224",
 			"tran_time": "175536",
-			"printed_content": "농협하나로마트",
-			"tran_amt": "135550"
+			"printed_content": "도미노 피자",
+			"detailed": "도미노피자 연희점",
+			"tran_amt": 14500
 		},
 		{
 			"tran_date": "20220224",
 			"tran_time": "124246",
-			"printed_content": "홈플러스",
-			"tran_amt": "179430"
+			"printed_content": "CGV",
+			"detailed": "CGV 홍대",
+			"tran_amt": 34000
 		},
 		{
 			"tran_date": "20220226",
 			"tran_time": "005817",
-			"printed_content": "모범택시",
-			"tran_amt": "68130"
+			"printed_content": "뚜레쥬르",
+			"detailed": "뚜레쥬르 수원정자점",
+			"tran_amt": 12000
 		},
 		{
 			"tran_date": "20220227",
 			"tran_time": "095242",
-			"printed_content": "쿠팡",
-			"tran_amt": "68690"
+			"printed_content": "투썸플레이스",
+			"detailed": "투썸플레이스 북수원정자타운점",
+			"tran_amt": 4500
 		},
 		{
 			"tran_date": "20220227",
 			"tran_time": "215230",
-			"printed_content": "롯데리아",
-			"tran_amt": "75490"
+			"printed_content": "GS25",
+			"detailed": "GS25 화서역파크점",
+			"tran_amt": 8300
 		},
 		{
 			"tran_date": "20220229",
 			"tran_time": "223252",
-			"printed_content": "오션월드",
-			"tran_amt": "129980"
+			"printed_content": "CU",
+			"detailed": "CU 화서문점",
+			"tran_amt": 4000
 		},
 		{
 			"tran_date": "20220305",
 			"tran_time": "203945",
-			"printed_content": "네이처리퍼블릭",
-			"tran_amt": "20660"
+			"printed_content": "롯데백화점",
+			"detailed": "롯데백화점 수원점",
+			"tran_amt": 84000
 		},
 		{
 			"tran_date": "20220309",
 			"tran_time": "181708",
-			"printed_content": "바이더웨이",
-			"tran_amt": "47890"
+			"printed_content": "맥도날드",
+			"detailed": "맥도날드 수원정자DT점",
+			"tran_amt": 7300
 		},
 		{
 			"tran_date": "20220312",
 			"tran_time": "090541",
-			"printed_content": "롯데리아",
-			"tran_amt": "151420"
-		},
-		{
-			"tran_date": "20220314",
-			"tran_time": "241208",
-			"printed_content": "캐리비안 베이",
-			"tran_amt": "166350"
-		},
-		{
-			"tran_date": "20220321",
-			"tran_time": "141219",
-			"printed_content": "인터넷 교보문고",
-			"tran_amt": "27770"
-		},
-		{
-			"tran_date": "20220321",
-			"tran_time": "173337",
-			"printed_content": "SK엔크린 LPG",
-			"tran_amt": "96650"
-		},
-		{
-			"tran_date": "20220330",
-			"tran_time": "212700",
-			"printed_content": "이마트 에브리데이",
-			"tran_amt": "191560"
-		},
-		{
-			"tran_date": "20220330",
-			"tran_time": "153719",
-			"printed_content": "S-Oil 휘발유",
-			"tran_amt": "120800"
-		},
-		{
-			"tran_date": "20220331",
-			"tran_time": "193125",
-			"printed_content": "왓챠",
-			"tran_amt": "118000"
-		},
-		{
-			"tran_date": "20220331",
-			"tran_time": "235138",
-			"printed_content": "롯데백화점",
-			"tran_amt": "61210"
-		},
-		{
-			"tran_date": "20220411",
-			"tran_time": "074231",
-			"printed_content": "배스킨라빈스 31",
-			"tran_amt": "17240"
-		},
-		{
-			"tran_date": "20220413",
-			"tran_time": "121660",
-			"printed_content": "아웃백스테이크하우스",
-			"tran_amt": "157440"
-		},
-		{
-			"tran_date": "20220415",
-			"tran_time": "145760",
-			"printed_content": "GS칼텍스 등유",
-			"tran_amt": "198960"
-		},
-		{
-			"tran_date": "20220417",
-			"tran_time": "090623",
-			"printed_content": "G마켓",
-			"tran_amt": "170200"
-		},
-		{
-			"tran_date": "20220430",
-			"tran_time": "072108",
-			"printed_content": "폴 바셋",
-			"tran_amt": "162010"
-		},
-		{
-			"tran_date": "20220505",
-			"tran_time": "225933",
-			"printed_content": "택시",
-			"tran_amt": "145480"
-		},
-		{
-			"tran_date": "20220525",
-			"tran_time": "223311",
-			"printed_content": "페리카나",
-			"tran_amt": "58110"
-		},
-		{
-			"tran_date": "20220526",
-			"tran_time": "142438",
-			"printed_content": "세븐일레븐",
-			"tran_amt": "111220"
-		},
-		{
-			"tran_date": "20220527",
-			"tran_time": "184959",
-			"printed_content": "엔제리너스",
-			"tran_amt": "26500"
-		},
-		{
-			"tran_date": "20220531",
-			"tran_time": "035233",
-			"printed_content": "GS칼텍스 등유",
-			"tran_amt": "158400"
-		},
-		{
-			"tran_date": "20220605",
-			"tran_time": "114738",
-			"printed_content": "경주월드",
-			"tran_amt": "29140"
-		},
-		{
-			"tran_date": "20220606",
-			"tran_time": "123559",
-			"printed_content": "디즈니 플러스",
-			"tran_amt": "42950"
-		},
-		{
-			"tran_date": "20220609",
-			"tran_time": "154419",
-			"printed_content": "쿠팡",
-			"tran_amt": "132630"
-		},
-		{
-			"tran_date": "20220610",
-			"tran_time": "241901",
-			"printed_content": "주유 LPG",
-			"tran_amt": "28350"
-		},
-		{
-			"tran_date": "20220613",
-			"tran_time": "085234",
-			"printed_content": "신세계몰",
-			"tran_amt": "132880"
-		},
-		{
-			"tran_date": "20220623",
-			"tran_time": "202154",
-			"printed_content": "파파존스피자",
-			"tran_amt": "124280"
-		},
-		{
-			"tran_date": "20220625",
-			"tran_time": "173816",
-			"printed_content": "에뛰드하우스",
-			"tran_amt": "163710"
-		},
-		{
-			"tran_date": "20220630",
-			"tran_time": "111213",
-			"printed_content": "메가박스 온라인",
-			"tran_amt": "183790"
-		},
-		{
-			"tran_date": "20220702",
-			"tran_time": "144630",
-			"printed_content": "주유 LPG",
-			"tran_amt": "143510"
-		},
-		{
-			"tran_date": "20220703",
-			"tran_time": "041148",
-			"printed_content": "모범택시",
-			"tran_amt": "2220"
-		},
-		{
-			"tran_date": "20220703",
-			"tran_time": "081045",
-			"printed_content": "롯데리아",
-			"tran_amt": "106580"
-		},
-		{
-			"tran_date": "20220705",
-			"tran_time": "010239",
-			"printed_content": "피자헛",
-			"tran_amt": "14250"
-		},
-		{
-			"tran_date": "20220706",
-			"tran_time": "042333",
-			"printed_content": "이디야커피",
-			"tran_amt": "6970"
-		},
-		{
-			"tran_date": "20220706",
-			"tran_time": "103250",
-			"printed_content": "애슐리",
-			"tran_amt": "185990"
-		},
-		{
-			"tran_date": "20220712",
-			"tran_time": "084520",
-			"printed_content": "현대오일뱅크 LPG",
-			"tran_amt": "193280"
-		},
-		{
-			"tran_date": "20220716",
-			"tran_time": "140517",
-			"printed_content": "T-money 충전",
-			"tran_amt": "48890"
-		},
-		{
-			"tran_date": "20220719",
-			"tran_time": "215015",
-			"printed_content": "오션월드",
-			"tran_amt": "33010"
-		},
-		{
-			"tran_date": "20220723",
-			"tran_time": "142539",
-			"printed_content": "KTX",
-			"tran_amt": "181310"
-		},
-		{
-			"tran_date": "20220724",
-			"tran_time": "140445",
-			"printed_content": "세븐스프링스",
-			"tran_amt": "62120"
-		},
-		{
-			"tran_date": "20220729",
-			"tran_time": "164929",
-			"printed_content": "웨이브",
-			"tran_amt": "180760"
-		},
-		{
-			"tran_date": "20220731",
-			"tran_time": "182344",
-			"printed_content": "현대오일뱅크 경유",
-			"tran_amt": "120020"
-		},
-		{
-			"tran_date": "20220802",
-			"tran_time": "030921",
-			"printed_content": "NH-OIL LPG",
-			"tran_amt": "34510"
-		},
-		{
-			"tran_date": "20220807",
-			"tran_time": "182538",
-			"printed_content": "GS25",
-			"tran_amt": "26930"
-		},
-		{
-			"tran_date": "20220813",
-			"tran_time": "123747",
-			"printed_content": "CGV",
-			"tran_amt": "19380"
-		},
-		{
-			"tran_date": "20220820",
-			"tran_time": "072239",
-			"printed_content": "하나로클럽",
-			"tran_amt": "8310"
-		},
-		{
-			"tran_date": "20220824",
-			"tran_time": "130827",
-			"printed_content": "캐시비",
-			"tran_amt": "84870"
-		},
-		{
-			"tran_date": "20220827",
-			"tran_time": "003619",
-			"printed_content": "G마켓",
-			"tran_amt": "73750"
-		},
-		{
-			"tran_date": "20220829",
-			"tran_time": "240702",
-			"printed_content": "모범택시",
-			"tran_amt": "39250"
-		},
-		{
-			"tran_date": "20220830",
-			"tran_time": "082157",
-			"printed_content": "뉴코아백화점",
-			"tran_amt": "79060"
-		},
-		{
-			"tran_date": "20220831",
-			"tran_time": "094733",
-			"printed_content": "네이버페이",
-			"tran_amt": "170850"
-		},
-		{
-			"tran_date": "20220912",
-			"tran_time": "105357",
-			"printed_content": "하겐다즈",
-			"tran_amt": "24730"
-		},
-		{
-			"tran_date": "20220912",
-			"tran_time": "165839",
-			"printed_content": "메가박스",
-			"tran_amt": "129630"
-		},
-		{
-			"tran_date": "20220915",
-			"tran_time": "203441",
-			"printed_content": "현대오일뱅크 휘발유",
-			"tran_amt": "124200"
-		},
-		{
-			"tran_date": "20220918",
-			"tran_time": "210630",
-			"printed_content": "NH-OIL 휘발유",
-			"tran_amt": "78130"
-		},
-		{
-			"tran_date": "20220918",
-			"tran_time": "062318",
-			"printed_content": "KT 인터넷전화",
-			"tran_amt": "119520"
-		},
-		{
-			"tran_date": "20220920",
-			"tran_time": "223828",
-			"printed_content": "LG유플러스",
-			"tran_amt": "86820"
-		},
-		{
-			"tran_date": "20220928",
-			"tran_time": "012012",
-			"printed_content": "코레일공항철도",
-			"tran_amt": "9190"
-		},
-		{
-			"tran_date": "20220931",
-			"tran_time": "134514",
-			"printed_content": "처갓집양념치킨",
-			"tran_amt": "28940"
-		},
-		{
-			"tran_date": "20221005",
-			"tran_time": "045216",
-			"printed_content": "파리크라상",
-			"tran_amt": "105930"
-		},
-		{
-			"tran_date": "20221010",
-			"tran_time": "053141",
-			"printed_content": "배스킨라빈스 31",
-			"tran_amt": "148600"
-		},
-		{
-			"tran_date": "20221012",
-			"tran_time": "052630",
-			"printed_content": "교보문고",
-			"tran_amt": "41580"
-		},
-		{
-			"tran_date": "20221016",
-			"tran_time": "092538",
-			"printed_content": "네이버쇼핑",
-			"tran_amt": "47630"
-		},
-		{
-			"tran_date": "20221018",
-			"tran_time": "090356",
-			"printed_content": "VIC 마켓",
-			"tran_amt": "151860"
-		},
-		{
-			"tran_date": "20221020",
-			"tran_time": "064945",
-			"printed_content": "이마트몰",
-			"tran_amt": "51100"
-		},
-		{
-			"tran_date": "20221101",
-			"tran_time": "030217",
-			"printed_content": "LG U+ 인터넷전화",
-			"tran_amt": "74210"
-		},
-		{
-			"tran_date": "20221101",
-			"tran_time": "243929",
-			"printed_content": "AK플라자 백화점",
-			"tran_amt": "78070"
-		},
-		{
-			"tran_date": "20221113",
-			"tran_time": "065422",
-			"printed_content": "맥도날드",
-			"tran_amt": "149680"
-		},
-		{
-			"tran_date": "20221115",
-			"tran_time": "181333",
-			"printed_content": "롯데닷컴",
-			"tran_amt": "24230"
-		},
-		{
-			"tran_date": "20221123",
-			"tran_time": "180228",
-			"printed_content": "롯데닷컴",
-			"tran_amt": "21100"
-		},
-		{
-			"tran_date": "20221125",
-			"tran_time": "065318",
-			"printed_content": "알뜰주유소 등유",
-			"tran_amt": "155590"
-		},
-		{
-			"tran_date": "20221128",
-			"tran_time": "102200",
-			"printed_content": "홈플러스",
-			"tran_amt": "145740"
-		},
-		{
-			"tran_date": "20221202",
-			"tran_time": "173140",
-			"printed_content": "크리스피크림",
-			"tran_amt": "45260"
-		},
-		{
-			"tran_date": "20221204",
-			"tran_time": "220340",
-			"printed_content": "LG유플러스",
-			"tran_amt": "34120"
-		},
-		{
-			"tran_date": "20221210",
-			"tran_time": "050652",
-			"printed_content": "S-Oil LPG",
-			"tran_amt": "28300"
-		},
-		{
-			"tran_date": "20221215",
-			"tran_time": "045954",
-			"printed_content": "알라딘",
-			"tran_amt": "117710"
-		},
-		{
-			"tran_date": "20221218",
-			"tran_time": "071247",
-			"printed_content": "롯데시네마 온라인",
-			"tran_amt": "119140"
-		},
-		{
-			"tran_date": "20221218",
-			"tran_time": "204140",
-			"printed_content": "현대오일뱅크 LPG",
-			"tran_amt": "98060"
-		},
-		{
-			"tran_date": "20221219",
-			"tran_time": "202543",
-			"printed_content": "KT IP-TV",
-			"tran_amt": "177510"
-		},
-		{
-			"tran_date": "20221228",
-			"tran_time": "131620",
-			"printed_content": "현대백화점 U-PLEX",
-			"tran_amt": "117730"
-		},
-		{
-			"tran_date": "20221231",
-			"tran_time": "180108",
-			"printed_content": "현대오일뱅크 등유",
-			"tran_amt": "16920"
+			"printed_content": "GS칼텍스 휘발유",
+			"detailed": "화서제일주유소",
+			"tran_amt": 50000
+		},
+		{
+			"tran_date": "20220312",
+			"tran_time": "090541",
+			"printed_content": "GS마트",
+			"detailed": "GS더프레시 수원화서점",
+			"tran_amt": 17300
 		}
 	]
 }

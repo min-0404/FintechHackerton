@@ -327,9 +327,19 @@ class serviceTwoRecommend(Resource):
 
 
 
+class serviceThreeSave(Resource):
+    def get(self):
+        with open('transactions.json', 'r', encoding="UTF-8") as json_file:
+            json_data = json.load(json_file)
+    
+        return json_data;
+
+
+
 api.add_resource(serviceOne, "/serviceOne")
 api.add_resource(serviceTwoSave,"/serviceTwo/save")
 api.add_resource(serviceTwoRecommend, "/serviceTwo/recommend")
+api.add_resource(serviceThreeSave,"/serviceThree/save")
 
 
 if __name__ == "__main__":
