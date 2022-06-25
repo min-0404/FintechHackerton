@@ -8,7 +8,6 @@ import Graduation.CardVisor.domain.serviceone.ServiceOneDto;
 import Graduation.CardVisor.domain.servicetwo.ServiceTwoCardsDto;
 import Graduation.CardVisor.domain.servicetwo.ServiceTwoDto;
 import Graduation.CardVisor.service.BenefitService;
-import Graduation.CardVisor.service.CardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +71,7 @@ public class BenefitController {
     @GetMapping("/results2")
     public Map<String, Object> results2(){
 
-        benefitService.save();
+        benefitService.saveServiceTwo();
 
         Map<String, Object> store = new HashMap<>();
 
@@ -98,6 +97,22 @@ public class BenefitController {
     @GetMapping("/serviceThree/map")
     public ServiceThreeLocations serviceThreeMap() {
         return benefitService.serviceThreeToMap();
+    }
+
+
+    @GetMapping("/results3")
+    public Map<String, Object> results3(){
+
+        benefitService.saveServiceThree();
+
+        Map<String, Object> store = new HashMap<>();
+
+        store.put("topTenCards", benefitService.dtoToRecommendedCards3());
+
+        store.put("bestCardBenefits", benefitService.bestCardBenefits3());
+
+        return store;
+
     }
 
 }

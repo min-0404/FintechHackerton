@@ -2,10 +2,10 @@ package Graduation.CardVisor.service;
 
 
 import Graduation.CardVisor.domain.Card;
-import Graduation.CardVisor.domain.benefit.Benefit;
 import Graduation.CardVisor.domain.benefit.BenefitDto;
 import Graduation.CardVisor.domain.kakao.SearchLocalRes;
 import Graduation.CardVisor.domain.serviceThree.ServiceThree;
+import Graduation.CardVisor.domain.serviceThree.ServiceThreeCardsDto;
 import Graduation.CardVisor.domain.serviceThree.ServiceThreeDto;
 import Graduation.CardVisor.domain.serviceThree.ServiceThreeLocations;
 import Graduation.CardVisor.domain.serviceone.ServiceOne;
@@ -52,6 +52,7 @@ public class BenefitService {
 
     private ServiceOneCardsDto resultDto = new ServiceOneCardsDto(); // Flask 서버에서 추천 된 카드들을 받아낼 임시 dto 를 전역변수로 선언
     private ServiceTwoCardsDto resultDto2 = new ServiceTwoCardsDto();
+    private ServiceThreeCardsDto resultDto3 = new ServiceThreeCardsDto();
 
     private final CardService cardService;
 
@@ -178,7 +179,7 @@ public class BenefitService {
         return serviceTwoDto;
     }
 
-    public void save(){
+    public void saveServiceTwo(){
         resultDto2 = flaskServiceTwoRecommend();
     }
 
@@ -242,6 +243,25 @@ public class BenefitService {
         return responseEntity.getBody();
     }
 
+    public ServiceThreeCardsDto flaskServiceThreeRecommend() {
+        var uri = UriComponentsBuilder.fromUriString("http://localhost:5001/serviceThree/recommend")
+                .build()
+                .encode()
+                .toUri();
+
+        var headers = new HttpHeaders();
+        var httpEntity = new HttpEntity<>(headers);
+
+        var responseType = new ParameterizedTypeReference<ServiceThreeCardsDto>(){};
+        var responseEntity = new RestTemplate().exchange(
+                uri,
+                HttpMethod.GET,
+                httpEntity,
+                responseType
+        );
+        return responseEntity.getBody();
+    }
+
     public ServiceThreeDto DtoToServiceThree(){
 
         ServiceThreeDto serviceThreeDto = flaskServiceThreeSave();
@@ -290,5 +310,24 @@ public class BenefitService {
         serviceThreeLocations.setLocationList(locationList);
 
         return serviceThreeLocations;
+    }
+
+    public void saveServiceThree(){
+        resultDto3 = flaskServiceThreeRecommend();
+    }
+
+    // serviceTwo 알고리즘 실행시키고, 카드 객체 담아서 반환
+    public List<Card> dtoToRecommendedCards3(){
+
+        List<Card> cards = new ArrayList<>();
+        for(Long cardId : resultDto3.getCards()){
+            cards.add(cardRepository.findCardById(cardId));
+        }
+        return cards;
+    }
+
+    // 첫번째 카드 혜택 담아서 반환
+    public List<BenefitDto> bestCardBenefits3(){
+        return cardService.getBenefits(resultDto3.getCards().get(0));
     }
 }
