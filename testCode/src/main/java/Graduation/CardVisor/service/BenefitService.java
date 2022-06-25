@@ -2,6 +2,7 @@ package Graduation.CardVisor.service;
 
 
 import Graduation.CardVisor.domain.Card;
+import Graduation.CardVisor.domain.benefit.Benefit;
 import Graduation.CardVisor.domain.benefit.BenefitDto;
 import Graduation.CardVisor.domain.serviceone.ServiceOne;
 import Graduation.CardVisor.domain.serviceone.ServiceOneCardsDto;
@@ -44,6 +45,7 @@ public class BenefitService {
     // ServiceOneCardsDto 는 스프링 백엔드 <-> 플라스크 백엔드 : 추천된 카드 데이터 전달
 
     private ServiceOneCardsDto resultDto = new ServiceOneCardsDto(); // Flask 서버에서 추천 된 카드들을 받아낼 임시 dto 를 전역변수로 선언
+    private ServiceTwoCardsDto resultDto2 = new ServiceTwoCardsDto();
 
     private final CardService cardService;
 
@@ -169,4 +171,28 @@ public class BenefitService {
 
         return serviceTwoDto;
     }
+
+    public void save(){
+        resultDto2 = flaskServiceTwoRecommend();
+    }
+
+
+    // serviceTwo 알고리즘 실행시키고, 카드 객체 담아서 반환
+    public List<Card> dtoToRecommendedCards2(){
+
+        List<Card> cards = new ArrayList<>();
+        for(Long cardId : resultDto2.getCards()){
+            cards.add(cardRepository.findCardById(cardId));
+        }
+        return cards;
+    }
+
+    // 첫번째 카드 혜택 담아서 반환
+    public List<BenefitDto> bestCardBenefits2(){
+        return cardService.getBenefits(resultDto2.getCards().get(0));
+    }
+
+
+
+
 }

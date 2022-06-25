@@ -14,7 +14,7 @@ from collections import OrderedDict
 def db_connector(sql):
     db = pymysql.connect(
         host='127.0.0.1',
-        port=3307,
+        port=3306,
         user='root',
         passwd='root',
         db='cardvisor_beta3',

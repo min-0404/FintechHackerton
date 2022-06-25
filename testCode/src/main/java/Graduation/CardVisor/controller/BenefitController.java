@@ -26,6 +26,7 @@ public class BenefitController {
     private BenefitService benefitService;
 
 
+
     // 추천 서비스 1 : 프론트에서 선택된 혜택들을 받아주는 컨트롤러
     @CrossOrigin("http://localhost:3000") // method: post 로 받을 시 꼭 붙여줄 것
     @PostMapping("/select")
@@ -47,19 +48,36 @@ public class BenefitController {
         //store.put("likeCount", benefitService.bestCardLikeCount());
 
         return store;
-
-        // 시험끝난 우리에게....
-        // results 에는 추천된 카드들이 담겨있다. => 이 카드들의 데이터 뽑아서 정리해서 프론트로 보내주는 것부터 시작하면 된단다. (그냥 showAllCards 처럼 하면 됨)
     }
 
+    // serviceTwo 테이블에 무작위로 200개 저장해주는 함수
     @GetMapping("/serviceTwo/save")
     public ServiceTwoDto serviceTwoSave() {
 
         return benefitService.DtoToServiceTwo();
     }
 
+    // 얘는 이제 필요없음
     @GetMapping("/serviceTwo/recommend")
     public ServiceTwoCardsDto serviceTwoRecommend() {
+
         return benefitService.flaskServiceTwoRecommend();
     }
+
+    // 추천 서비스2: 추천된 카드들의 정보를 프론트로 전송하는 컨트롤러
+    @GetMapping("/results2")
+    public Map<String, Object> results2(){
+
+        benefitService.save();
+
+        Map<String, Object> store = new HashMap<>();
+
+        store.put("topTenCards", benefitService.dtoToRecommendedCards2());
+
+        store.put("bestCardBenefits", benefitService.bestCardBenefits2());
+
+        return store;
+
+    }
+
 }
